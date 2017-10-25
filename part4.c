@@ -48,8 +48,8 @@ void pickUpChopsticks(int threadIndex){
 	}else{
 		right = threadIndex - 1;
 	}
-	pthread_mutex_lock(&chopstick[left]);
-	pthread_mutex_lock(&chopstick[right]);
+	pthread_mutex_trylock(&chopstick[left]);		//use pthread_mutex_trylock() to prevent blocking
+	pthread_mutex_trylock(&chopstick[right]);
 }
 
 

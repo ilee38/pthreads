@@ -16,7 +16,7 @@ int nthreads;
 int philosopherIdx = 0;		//Index for eating order
 pthread_mutex_t chopstick_mutex;
 pthread_cond_t eating_turn;
-FILE *fp = fopen("part2-output.txt", "a");	//create output file
+FILE *fp = fopen("status.txt", "a");	//create output file
 
 
 /*
@@ -34,7 +34,7 @@ void thinking(){
  * */
 void eating(int threadIndex){
 	int rnd = (random() % 499) + 1;		//Generate random number from 1 to 500
-	printf("Philosopher %d is eating\n", threadIndex);
+	fprintf(fp, "Philosopher %d is eating\n", threadIndex);
 	usleep(rnd);
 	if(philosopherIdx == (nthreads - 1)){	//Increment philosopherIdx after eating. Reset if it is the last philosopher
 		philosopherIdx = 0;
